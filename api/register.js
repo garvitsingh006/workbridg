@@ -17,7 +17,7 @@ const credentials = {
 };
 
 
-const SPREADSHEET_ID = "1UVezX5Ps0hWv-UomZ1SF-Z55Jf3HkgRR2dwxOOA0wiU";
+const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
 
 // Auth setup
 const auth = new google.auth.GoogleAuth({
