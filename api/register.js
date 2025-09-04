@@ -1,7 +1,6 @@
 // routes/register.js
 import express from "express";
 import { google } from "googleapis";
-const router = express.Router();
 
 const credentials = {
   type: process.env.GOOGLE_TYPE,
@@ -26,7 +25,7 @@ const auth = new google.auth.GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-router.post("/", async (req, res) => {
+export default async function handler (req, res) {
   try {
     const { formType, data } = req.body;
 
@@ -64,6 +63,4 @@ router.post("/", async (req, res) => {
     console.error("Error adding data:", error);
     res.status(500).json({ error: "Failed to add data" });
   }
-});
-
-export default router;
+};
