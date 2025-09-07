@@ -13,6 +13,7 @@ export default function ComingSoonPage() {
     field: "",
     experience: "",
     phone: "",
+    portfolio: "",
   });
 
     const [clientData, setClientData] = useState({
@@ -21,6 +22,7 @@ export default function ComingSoonPage() {
     company: "",
     years: "",
     phone: "",
+    portfolio: "",
   });
 
   const handleChange = (type:any, field:any, value:any) => {
@@ -51,9 +53,9 @@ export default function ComingSoonPage() {
             if (res.ok) {
                 toast.success("Form submitted!");
                 if (formType === "freelancer") {
-                    setFreelancerData({ name: "", email: "", field: "", experience: "", phone: "" });
+                    setFreelancerData({ name: "", email: "", field: "", experience: "", phone: "", portfolio: "" });
                 } else {
-                    setClientData({ name: "", email: "", company: "", years: "", phone: "" });
+                    setClientData({ name: "", email: "", company: "", years: "", phone: "", portfolio: "" });
                 }
             } else {
                 toast.error(result.error || "Something went wrong");
@@ -248,6 +250,14 @@ export default function ComingSoonPage() {
                     <input type="text" placeholder="Field of Work" className="border-none rounded-xl p-3" value={freelancerData.field} onChange={(e) => handleChange("freelancer", "field", e.target.value)} required />
                     <input type="text" placeholder="Experience (years)" className="border-none rounded-xl p-3" value={freelancerData.experience} onChange={(e) => handleChange("freelancer", "experience", e.target.value)} required />
                     <input type="text" placeholder="Contact Number" className="border-none rounded-xl p-3" value={freelancerData.phone} onChange={(e) => handleChange("freelancer", "phone", e.target.value)} required />
+                    {/* Portfolio field added */}
+                    <input 
+                        type="url"
+                        placeholder="Portfolio (Link)" 
+                        className="border-none rounded-xl p-3"
+                        value={freelancerData.portfolio} 
+                        onChange={(e) => handleChange("freelancer", "portfolio", e.target.value)} 
+                    />
                     <Button type="submit" variant="black" className="w-full rounded-2xl py-3 text-lg cursor-pointer">Submit</Button>
                   </form>
                 ) : (
@@ -257,6 +267,13 @@ export default function ComingSoonPage() {
                     <input type="text" placeholder="Company Name" className="border-none rounded-xl p-3" value={clientData.company} onChange={(e) => handleChange("client", "company", e.target.value)} required />
                     <input type="text" placeholder="Years in Business" className="border-none rounded-xl p-3" value={clientData.years} onChange={(e) => handleChange("client", "years", e.target.value)} required />
                     <input type="text" placeholder="Contact Number" className="border-none rounded-xl p-3" value={clientData.phone} onChange={(e) => handleChange("client", "phone", e.target.value)} required />
+                    <input 
+                        type="url"
+                        placeholder="Portfolio (Link)" 
+                        className="border-none rounded-xl p-3"
+                        value={clientData.portfolio} 
+                        onChange={(e) => handleChange("client", "portfolio", e.target.value)} 
+                    />
                     <Button type="submit"  variant='black' className="w-full rounded-2xl py-3 text-lg cursor-pointer">Submit</Button>
                   </form>
                 )}

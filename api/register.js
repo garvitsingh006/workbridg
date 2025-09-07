@@ -32,12 +32,12 @@ export default async function handler (req, res) {
     let sheetName;
 
     if (formType === "freelancer") {
-      const { name, email, field, experience, phone } = data;
-      values = [[name, email, field, experience, phone, new Date().toISOString()]];
+      const { name, email, field, experience, phone, portfolio } = data;
+      values = [[name, email, field, experience, phone, portfolio, new Date().toISOString()]];
       sheetName = "Freelancers";
     } else if (formType === "client") {
-      const { name, email, company, years, phone } = data;
-      values = [[name, email, company, years, phone, new Date().toISOString()]];
+      const { name, email, company, years, phone, portfolio } = data;
+      values = [[name, email, company, years, phone, portfolio, new Date().toISOString()]];
       sheetName = "Clients";
     } else {
       return res.status(400).json({ error: "Invalid formType" });
@@ -45,7 +45,7 @@ export default async function handler (req, res) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${sheetName}!A:E`,
+      range: `${sheetName}!A:G`,
       valueInputOption: "RAW",
       requestBody: { values },
     });
